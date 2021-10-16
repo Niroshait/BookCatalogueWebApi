@@ -44,9 +44,18 @@ namespace BookCatalogueMicroservice.Repository
             _dbContext.SaveChanges();
         }
 
-        public void UpdateBook(Book book)
+        public void UpdateBook(int bookId, Book book)
         {
+            var local = _dbContext.Books
+                .Local
+                .FirstOrDefault(entry => entry.Id.Equals(bookId));
+
+            if (local != null)
+            {
+                _dbContext.Entry(local).State = EntityState.Detached;
+            }
             _dbContext.Entry(book).State = EntityState.Modified;
+            //_dbContext.SaveChanges();
             Save();
         }
     }

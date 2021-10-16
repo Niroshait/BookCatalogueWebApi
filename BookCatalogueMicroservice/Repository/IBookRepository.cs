@@ -12,7 +12,7 @@ namespace BookCatalogueMicroservice.Repository
         Book GetBookByID(int bookId);
         void InsertBook(Book book);
         void DeleteBook(int bookId);
-        void UpdateBook(Book book);
+        void UpdateBook(int bookId, Book book);
         void Save();
     }
 }

@@ -20,7 +20,6 @@ namespace BookCatalogueMicroservice.Tests
             service = new Mock<IBookRepository>();
         }
         [Fact]
-        //naming convention MethodName_expectedBehavior_StateUnderTest
         public void GetBook_BookExistsInRepo()
         {
             //arrange
@@ -63,7 +62,7 @@ namespace BookCatalogueMicroservice.Tests
             //arrange
             var books = GetSampleBook();
             var firstbook = books[0];
-            service.Setup(x => x.GetBookByID((int)8))
+            service.Setup(x => x.GetBookByID((int)18))
                 .Returns(firstbook);
             var controller = new BookController(service.Object);
 

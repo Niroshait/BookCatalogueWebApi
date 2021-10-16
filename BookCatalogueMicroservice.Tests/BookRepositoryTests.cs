@@ -73,11 +73,12 @@ namespace BookCatalogueMicroservice.Tests
         [Fact]
         public void UpdateBookTest()
         {
+            InsertBookTest();
             Book bok = new Book { Id = 3, Title = "WPF Volumn2", Authors = "Smith", Isbn = "11-0001-12-45", PublicationDate = "28-08-2021" };
             using (var context = new BookContext(options))
             {
                 var repo = new BookRepository(context);
-                repo.UpdateBook(bok);
+                repo.UpdateBook(bok.Id,bok);
                 Book book = repo.GetBookByID((int)3);
                 Assert.Equal("WPF Volumn2", book.Title);
             }
@@ -86,6 +87,7 @@ namespace BookCatalogueMicroservice.Tests
         [Fact]
         public void DeleteBookTest()
         {
+            InsertBookTest();
             using (var context = new BookContext(options))
             {
                 var repo = new BookRepository(context);
